@@ -29,6 +29,8 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
         )
 
     data = response.json().get("person")
+    if not data:
+        return {}
     data = {k: v for k, v in data.items() if
             v not in ([], "", "", None) and k not in ["certifications"]}
 
